@@ -1,0 +1,5 @@
+*.swp
+*.ckpt.*
+checkpoint
+*.csv
+.ipynb_*
