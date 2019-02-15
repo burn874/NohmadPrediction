@@ -3,3 +3,4 @@
 checkpoint
 *.csv
 .ipynb_*
+*.npy
