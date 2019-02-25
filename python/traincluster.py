@@ -6,7 +6,7 @@ import tensorflow as tf
 def train(Xtrain, Ycluster, traingraphpath):
     num_samples = Xtrain.shape[0];
     inshape = Xtrain.shape[1]
-    intermediate = 6*inshape
+    intermediate = 10*inshape
     outshape = len(set(Ycluster))
 
     Yclustertrain = np.zeros(shape = (num_samples, outshape))
@@ -29,12 +29,13 @@ def train(Xtrain, Ycluster, traingraphpath):
     h = tf.nn.softmax(tf.matmul(tf.nn.relu(tf.matmul(X, m1) + b1), m2) + b2, axis = 1, name = "softmax")
     print(h)
     loss = tf.reduce_mean(-(Y*tf.log(h) + (1-Y)*tf.log(1-h)), name = "loss")
-    optimizer = tf.train.AdamOptimizer(learning_rate = 1e-3)
+    optimizer = tf.train.AdamOptimizer(learning_rate = 1e-4)
     trainer = optimizer.minimize(loss, name = "trainer")
     saver = tf.train.Saver()
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        for i in range(600):
+        lossvalue = 1
+        while (lossvalue > 0.01):
             _, lossvalue = sess.run([trainer, loss], feed_dict = {X:Xtrain, Y:Yclustertrain})
             print(lossvalue)
 #        print(sess.graph.get_operations())

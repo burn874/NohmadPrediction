@@ -21,9 +21,9 @@ def save_data_ckpt(npdata, graphpath = "data.ckpt", cutfirst = False):
         sess.run(tf.global_variables_initializer())
         saver.save(sess, graphpath)
 
-from sklearn.cluster import DBSCAN
-def dbscan(npdata, outpath = "labels.tsv", eps = 0.5):
-    clustering = DBSCAN(eps).fit_predict(npdata)
+from sklearn.cluster import KMeans
+def clustering(npdata, outpath = "labels.tsv", clusters = 12):
+    clustering = KMeans(clusters).fit_predict(npdata)
     print(clustering)
     length = len(set(clustering))
     with open(outpath, "w") as f:
