@@ -18,8 +18,8 @@ def train(Xtrain, Ycluster, traingraphpath):
 
     print(Xtrain.shape)
     print(Yclustertrain.shape)
-    X = tf.placeholder(dtype = tf.float32, shape = Xtrain.shape, name="Xtrain")
-    Y = tf.placeholder(dtype = tf.float32, shape = Yclustertrain.shape, name = "Yclustertrain")
+    X = tf.placeholder(dtype = tf.float32, shape = [num_samples, inshape], name="Xtrain")
+    Y = tf.placeholder(dtype = tf.float32, shape = [num_samples, outshape], name = "Yclustertrain")
     #h = softmax(relu(X*m1 + b1)*m2 + b2)
     m1 = tf.Variable(tf.random.normal((inshape, intermediate), dtype = tf.float32, stddev=0.01), name = "m1")
     b1 = tf.Variable(tf.random.normal((1, intermediate), dtype = tf.float32, stddev=0.01), name = "b1")
