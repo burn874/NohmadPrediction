@@ -25,11 +25,13 @@ from sklearn.cluster import DBSCAN
 def dbscan(npdata, outpath = "labels.tsv", eps = 0.5):
     clustering = DBSCAN(eps).fit_predict(npdata)
     print(clustering)
-    print(set(clustering))
-    list(clustering).index(-1)
+    length = len(set(clustering))
     with open(outpath, "w") as f:
         for line in np.array(clustering):
             f.write(str(line) + "\n")
+    for i in range(len(clustering)):
+        if (clustering[i] == -1):
+            clustering[i] = length-1;
     return clustering
 
 def save_npy(npdata, outpath):
