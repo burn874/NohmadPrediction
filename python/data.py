@@ -11,22 +11,19 @@ def read_data(inpath = "train.csv"):
         #Remove first string row and convert everything into float32
         npdata = np.array(rawlist[1:], dtype = np.float32)
     #Remove first index column
-    npdata = npdata[:, 1:]
+    #npdata = npdata[:, 1:]
     return npdata;
 import tensorflow as tf
-def save_data_ckpt(npdata):
+def save_data_ckpt(npdata, graphpath = "data.ckpt", cutfirst = False):
     embedding_var = tf.Variable(npdata)
     saver = tf.train.Saver()
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        saver.save(sess, "./data.ckpt")
-#TRY TO SPLIT DATA INTO 11 CLUSTERS
-#a = np.sum((npdata[2371] - npdata[2399])**2)
-#print("Minimum euclid distance: {}".format(a))
+        saver.save(sess, graphpath)
 
 from sklearn.cluster import DBSCAN
-def dbscan(npdata, outpath = "labels.tsv"):
-    clustering = DBSCAN().fit_predict(npdata)
+def dbscan(npdata, outpath = "labels.tsv", eps = 0.5):
+    clustering = DBSCAN(eps).fit_predict(npdata)
     print(clustering)
     print(set(clustering))
     list(clustering).index(-1)
