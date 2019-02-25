@@ -55,8 +55,6 @@ with open("submit.csv", "w") as f:
     f.write("id,formation_energy_ev_natom,bandgap_energy_ev\n");
     for i in range(600):
         f.write(str(i+1)+","+str(out[i,0])+","+str(out[i,1])+"\n");
-#WRITE OUT SUBMISSION
-
 pdb.set_trace()
 
 
