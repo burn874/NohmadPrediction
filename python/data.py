@@ -11,7 +11,7 @@ def read_data(inpath = "train.csv"):
         #Remove first string row and convert everything into float32
         npdata = np.array(rawlist[1:], dtype = np.float32)
     #Remove first index column
-    #npdata = npdata[:, 1:]
+    npdata = npdata[:, 1:]
     return npdata;
 import tensorflow as tf
 def save_data_ckpt(npdata, graphpath = "data.ckpt", cutfirst = False):

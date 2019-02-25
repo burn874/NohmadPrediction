@@ -8,10 +8,8 @@ datapath = os.path.join(data_offset, "train.csv");
 data = read_data(datapath);
 
 
-"""
 clusterlabelpath = os.path.join(data_offset, "clusterlabels.tsv")
 cluster = dbscan(data, clusterlabelpath);
-"""
 traindatagraphpath = os.path.join(graph_offset, "traindata.ckpt")
 save_data_ckpt(data, traindatagraphpath)
 
