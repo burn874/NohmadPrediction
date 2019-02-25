@@ -21,7 +21,7 @@ train(data[:,0:11], cluster, os.path.join(graph_offset, "traingraph.ckpt"))
 #DO THE TEST FOR CLASSIFIER
 from python.testcluster import test
 argmax = test(data[:,0:11], os.path.join(graph_offset, "traingraph.ckpt"))
-with open("trainclusterlabels.tsv", "w") as f:
+with open(os.path.join(data_offset,"trainclusterlabels.tsv"), "w") as f:
     for i in range(2400):
         f.write(str(argmax[i])+"\n");
 print("Error {}/{}".format(np.count_nonzero(argmax - cluster), len(cluster)))
@@ -49,7 +49,7 @@ testdata = read_data(testpath);
 testdata = np.concatenate((testdata, np.zeros((1800, 11))), axis = 0)
 #GET CLUSTER FROM CLASSIFER
 argmax = test(testdata, os.path.join(graph_offset, "traingraph.ckpt"))
-with open("testclusterlabels.tsv", "w") as f:
+with open(os.path.join(data_offset,"testclusterlabels.tsv"), "w") as f:
     for i in range(2400):
         f.write(str(argmax[i])+"\n");
 #GET PREDICTION FROM LINEAR REGRESSION MODEL
