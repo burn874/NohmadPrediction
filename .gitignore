@@ -2,3 +2,5 @@
 *.ckpt.*
 checkpoint
 .idea
+.tsv
+*__pycache__*
