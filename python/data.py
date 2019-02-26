@@ -2,6 +2,7 @@
 #This code reads the csv file, saves into TF graph to visualize, do clustering then save np array into .npy file
 import csv
 import numpy as np
+import pdb
 def read_data(inpath = "train.csv"):
     with open(inpath) as csvfile:
         raw = csv.reader(csvfile)
@@ -22,7 +23,10 @@ def save_data_ckpt(npdata, graphpath = "data.ckpt", cutfirst = False):
         saver.save(sess, graphpath)
 
 from sklearn.cluster import KMeans
-def clustering(npdata, outpath = "labels.tsv", clusters = 12):
+def clustering(data, outpath = "labels.tsv", clusters = 12):
+    mean = np.mean(data, axis = 0).reshape((1, data.shape[1]))
+    var = np.var(data, axis = 0)
+    npdata = (data - mean)/np.sqrt(var)
     clustering = KMeans(clusters).fit_predict(npdata)
     print(clustering)
     length = len(set(clustering))

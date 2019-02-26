@@ -35,7 +35,7 @@ def train(Xtrain, Ycluster, traingraphpath):
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         lossvalue = 1
-        while (lossvalue > 0.01):
+        while (lossvalue > 0.03):
             _, lossvalue = sess.run([trainer, loss], feed_dict = {X:Xtrain, Y:Yclustertrain})
             print(lossvalue)
 #        print(sess.graph.get_operations())
