@@ -49,6 +49,12 @@ testdata = read_data(testpath);
 testdata = np.concatenate((testdata, np.zeros((1800, 11))), axis = 0)
 #GET CLUSTER FROM CLASSIFER
 argmax = test(testdata, os.path.join(graph_offset, "traingraph.ckpt"))
+for i in set(argmax):
+    count = 0;
+    for j in range(600):
+        if (argmax[j] == i):
+            count+=1;
+    print("Test cluster {} size {}".format(i, count))
 with open(os.path.join(data_offset,"testclusterlabels.tsv"), "w") as f:
     for i in range(2400):
         f.write(str(argmax[i])+"\n");
