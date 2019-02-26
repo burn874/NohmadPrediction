@@ -6,7 +6,7 @@ import tensorflow as tf
 def train(Xtrain, Ycluster, traingraphpath):
     num_samples = Xtrain.shape[0];
     inshape = Xtrain.shape[1]
-    intermediate = 10*inshape
+    intermediate = 8*inshape
     outshape = len(set(Ycluster))
 
     Yclustertrain = np.zeros(shape = (num_samples, outshape))
