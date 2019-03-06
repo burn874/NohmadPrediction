@@ -23,7 +23,7 @@ def save_data_ckpt(npdata, graphpath = "data.ckpt", cutfirst = False):
         saver.save(sess, graphpath)
 
 from sklearn.cluster import KMeans
-def clustering(data, outpath = "labels.tsv", clusters = 12):
+def clustering(data, outpath = "labels.tsv", clusters = 14):
     mean = np.mean(data, axis = 0).reshape((1, data.shape[1]))
     var = np.var(data, axis = 0)
     npdata = (data - mean)/np.sqrt(var)
